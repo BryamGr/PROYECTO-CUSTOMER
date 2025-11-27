@@ -1,0 +1,426 @@
+    <!DOCTYPE html>
+    <html class="dark" lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Historial Emocional - Loopi</title>
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+        />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+        />
+
+        <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                primary: "#4f7df3",
+                "background-light": "#f6f6f8",
+                "background-dark": "#101522",
+                },
+                fontFamily: {
+                display: ["Lexend", "sans-serif"],
+                },
+                borderRadius: {
+                DEFAULT: "0.5rem",
+                lg: "1rem",
+                xl: "1.5rem",
+                full: "9999px",
+                },
+            },
+            },
+        };
+        </script>
+
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        </style>
+    </head>
+
+    <body class="bg-background-light dark:bg-background-dark font-display">
+        <div class="relative flex h-auto min-h-screen w-full flex-col">
+        <div class="flex flex-col flex-1 pb-24">
+            <!-- Top App Bar -->
+            <div
+            class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10"
+            >
+            <div class="flex size-12 shrink-0 items-center justify-start">
+                <button
+                type="button"
+                data-back
+                class="flex items-center justify-center"
+                >
+                <span
+                    class="material-symbols-outlined text-gray-800 dark:text-white"
+                    style="font-size: 24px;"
+                    >arrow_back</span
+                >
+                </button>
+            </div>
+
+            <h2
+                class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center"
+            >
+                Historial Emocional
+            </h2>
+
+            <div class="flex w-12 items-center justify-end">
+                <button
+                class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-gray-800 dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+                >
+                <span
+                    class="material-symbols-outlined"
+                    style="font-size: 24px;"
+                    >filter_list</span
+                >
+                </button>
+            </div>
+            </div>
+
+            <!-- Body Text (Offline Indicator) -->
+            <p
+            class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center bg-yellow-500/10 dark:bg-yellow-500/20 border-b border-t border-yellow-500/20"
+            >
+            Sin conexión. Los datos se sincronizarán más tarde.
+            </p>
+
+            <!-- Segmented Buttons -->
+            <div class="flex px-4 py-3">
+            <div
+                class="flex h-10 flex-1 items-center justify-center rounded-lg bg-gray-200 dark:bg-black/20 p-1"
+            >
+                <label
+                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-white has-[:checked]:dark:bg-primary has-[:checked]:shadow-sm has-[:checked]:text-gray-900 has-[:checked]:dark:text-white text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal"
+                >
+                <span class="truncate">Semana</span>
+                <input
+                    checked
+                    class="invisible w-0"
+                    name="date-range"
+                    type="radio"
+                    value="Semana"
+                />
+                </label>
+                <label
+                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-white has-[:checked]:dark:bg-primary has-[:checked]:shadow-sm has-[:checked]:text-gray-900 has-[:checked]:dark:text-white text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal"
+                >
+                <span class="truncate">Mes</span>
+                <input
+                    class="invisible w-0"
+                    name="date-range"
+                    type="radio"
+                    value="Mes"
+                />
+                </label>
+            </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="flex flex-wrap gap-4 px-4 py-2">
+            <div
+                class="flex w-full flex-1 flex-col gap-2 rounded-xl bg-gray-100 dark:bg-black/20 p-4"
+            >
+                <p
+                class="text-gray-800 dark:text-white text-base font-medium leading-normal"
+                >
+                Frecuencia Emocional
+                </p>
+                <p
+                class="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight truncate"
+                >
+                15 Registros
+                </p>
+                <div class="flex gap-1">
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal"
+                >
+                    Últimos 7 días
+                </p>
+                <p
+                    class="text-green-500 dark:text-green-400 text-base font-medium leading-normal"
+                >
+                    +5%
+                </p>
+                </div>
+                <div
+                class="grid min-h-[160px] grid-flow-col gap-5 grid-rows-[1fr_auto] items-end justify-items-center pt-4"
+                >
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 100%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    L
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 70%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    M
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 50%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    X
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 60%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    J
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 40%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    V
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 10%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    S
+                </p>
+
+                <div
+                    class="bg-[#c2cefe] dark:bg-primary/30 w-full rounded-t-full"
+                    style="height: 60%;"
+                ></div>
+                <p
+                    class="text-gray-500 dark:text-gray-400 text-xs font-medium leading-normal tracking-[0.015em]"
+                >
+                    D
+                </p>
+                </div>
+            </div>
+            </div>
+
+            <!-- Chips (Filters) -->
+            <div class="flex gap-3 p-4 overflow-x-auto">
+            <button
+                type="button"
+                data-filter="todas"
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 dark:bg-primary/30 px-4 text-primary dark:text-white text-sm font-medium leading-normal"
+            >
+                Todas
+            </button>
+            <button
+                type="button"
+                data-filter="calma"
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-black/20 px-4 text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal"
+            >
+                Calma
+            </button>
+            <button
+                type="button"
+                data-filter="contento"
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-black/20 px-4 text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal"
+            >
+                Contento
+            </button>
+            <button
+                type="button"
+                data-filter="frustracion"
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-black/20 px-4 text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal"
+            >
+                Frustración
+            </button>
+            <button
+                type="button"
+                data-filter="ansiedad"
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-black/20 px-4 text-gray-800 dark:text-gray-300 text-sm font-medium leading-normal"
+            >
+                Ansiedad
+            </button>
+            </div>
+
+            <!-- Timeline -->
+            <div class="flex flex-col gap-6 px-4 py-2">
+            <!-- Timeline Item 1 -->
+            <div class="relative flex gap-4" data-emotion-item="calma">
+                <div
+                class="absolute left-6 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-800"
+                ></div>
+                <div
+                class="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-500/20"
+                >
+                <span class="text-2xl">😌</span>
+                </div>
+                <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900 dark:text-white">
+                    Calma
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Hoy, 10:30 AM
+                </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="relative flex gap-4" data-emotion-item="frustracion">
+                <div
+                class="absolute left-6 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-800"
+                ></div>
+                <div
+                class="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-500/20"
+                >
+                <span class="text-2xl">😠</span>
+                </div>
+                <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900 dark:text-white">
+                    Frustración
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    Ayer, 18:15
+                </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="relative flex gap-4" data-emotion-item="contento">
+                <div
+                class="absolute left-6 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-800"
+                ></div>
+                <div
+                class="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-yellow-500/20"
+                >
+                <span class="text-2xl">😊</span>
+                </div>
+                <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900 dark:text-white">
+                    Contento
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    25 Oct, 09:00
+                </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="relative flex gap-4" data-emotion-item="ansiedad">
+                <div
+                class="absolute left-6 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-800"
+                ></div>
+                <div
+                class="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-purple-500/20"
+                >
+                <span class="text-2xl">😟</span>
+                </div>
+                <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900 dark:text-white">
+                    Ansiedad
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    24 Oct, 14:30
+                </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Bar (Loopi estándar: Rutinas / Comunicar / Progreso / Emociones / Ajustes) -->
+        <nav
+            class="fixed bottom-0 left-0 right-0 z-10 border-t border-gray-200 bg-background-light dark:border-gray-800 dark:bg-background-dark/80 backdrop-blur-sm"
+        >
+            <div
+            class="flex justify-around items-center h-20 max-w-md mx-auto px-2"
+            >
+            <a
+                href="#"
+                data-nav="rutinas"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            >
+                <span class="material-symbols-outlined" style="font-size: 24px;"
+                >checklist</span
+                >
+                <span class="text-xs font-medium">Rutinas</span>
+            </a>
+
+            <a
+                href="#"
+                data-nav="comunicar"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            >
+                <span class="material-symbols-outlined" style="font-size: 24px;"
+                >chat_bubble</span
+                >
+                <span class="text-xs font-medium">Comunicar</span>
+            </a>
+
+            <a
+                href="#"
+                data-nav="progreso"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            >
+                <span class="material-symbols-outlined" style="font-size: 24px;"
+                >bar_chart</span
+                >
+                <span class="text-xs font-medium">Progreso</span>
+            </a>
+
+            <!-- Emociones activo en esta pantalla -->
+            <a
+                href="#"
+                data-nav="emociones"
+                class="flex flex-col items-center justify-center gap-1 text-primary dark:text-primary"
+            >
+                <span class="material-symbols-outlined" style="font-size: 24px;"
+                >sentiment_satisfied</span
+                >
+                <span class="text-xs font-bold">Emociones</span>
+            </a>
+
+            <a
+                href="#"
+                data-nav="ajustes"
+                class="flex flex-col items-center justify-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+            >
+                <span class="material-symbols-outlined" style="font-size: 24px;"
+                >settings</span
+                >
+                <span class="text-xs font-medium">Ajustes</span>
+            </a>
+            </div>
+        </nav>
+        </div>
+
+        <!-- JS separado -->
+        <script src="historial-emocional.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Loopi</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4f7df3",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101522",
+          },
+          fontFamily: { "display": ["Lexend", "sans-serif"] },
+          borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="relative flex h-auto min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="w-full max-w-md">
+
+      <!-- Logo Section -->
+      <div class="mb-8 flex justify-center">
+        <svg class="text-primary" width="64" height="64" viewBox="0 0 64 64" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 58C46.3594 58 58 46.3594 58 32C58 17.6406 46.3594 6 32 6C17.6406 6 6 17.6406 6 32C6 46.3594 17.6406 58 32 58Z"
+            stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M32 44C38.6274 44 44 38.6274 44 32C44 25.3726 38.6274 20 32 20C25.3726 20 20 25.3726 20 32C20 38.6274 25.3726 44 32 44Z"
+            stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M32 6V20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M32 44V58" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M58 32H44" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M20 32H6" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-slate-800 dark:text-white tracking-tight text-3xl font-bold leading-tight text-center pb-8">
+        Crea tu cuenta
+      </h1>
+
+      <!-- Form -->
+      <form id="registerForm" class="flex flex-col gap-4">
+        <!-- Username Field -->
+        <label class="flex flex-col w-full">
+          <p class="text-slate-600 dark:text-slate-300 text-base font-medium leading-normal pb-2">
+            Nombre de Usuario
+          </p>
+          <input
+            id="registerUsername"
+            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg
+                   text-slate-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50
+                   border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50
+                   focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500
+                   p-4 text-base font-normal leading-normal"
+            placeholder="Ingresa tu nombre de usuario"
+            type="text"
+            required />
+        </label>
+
+        <!-- Email Field -->
+        <label class="flex flex-col w-full">
+          <p class="text-slate-600 dark:text-slate-300 text-base font-medium leading-normal pb-2">
+            Correo electrónico
+          </p>
+          <input
+            id="registerEmail"
+            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg
+                   text-slate-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50
+                   border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50
+                   focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500
+                   p-4 text-base font-normal leading-normal"
+            placeholder="Ingresa tu correo electrónico"
+            type="email"
+            required />
+        </label>
+
+        <!-- Password Field -->
+        <label class="flex flex-col w-full">
+          <p class="text-slate-600 dark:text-slate-300 text-base font-medium leading-normal pb-2">
+            Contraseña
+          </p>
+          <div class="relative flex w-full items-center">
+            <input
+              id="registerPassword"
+              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg
+                     text-slate-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50
+                     border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50
+                     focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500
+                     p-4 pr-12 text-base font-normal leading-normal"
+              placeholder="Ingresa tu contraseña"
+              type="password"
+              required />
+            <button
+              id="toggleRegisterPassword"
+              type="button"
+              class="absolute inset-y-0 right-0 flex items-center pr-4
+                     text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary
+                     focus:outline-none">
+              <span class="material-symbols-outlined">visibility</span>
+            </button>
+          </div>
+        </label>
+
+        <!-- Confirm Password Field -->
+        <label class="flex flex-col w-full">
+          <p class="text-slate-600 dark:text-slate-300 text-base font-medium leading-normal pb-2">
+            Confirmar Contraseña
+          </p>
+          <div class="relative flex w-full items-center">
+            <input
+              id="registerConfirmPassword"
+              class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg
+                     text-slate-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50
+                     border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/50
+                     focus:border-primary h-14 placeholder:text-slate-400 dark:placeholder:text-slate-500
+                     p-4 pr-12 text-base font-normal leading-normal"
+              placeholder="Confirma tu contraseña"
+              type="password"
+              required />
+            <button
+              id="toggleRegisterConfirmPassword"
+              type="button"
+              class="absolute inset-y-0 right-0 flex items-center pr-4
+                     text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary
+                     focus:outline-none">
+              <span class="material-symbols-outlined">visibility_off</span>
+            </button>
+          </div>
+        </label>
+
+        <!-- CTA Button -->
+        <div class="mt-4">
+          <button
+            type="submit"
+            class="flex h-14 w-full items-center justify-center rounded-lg bg-primary px-6
+                   text-base font-medium text-white shadow-sm transition-all duration-200
+                   hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50
+                   focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark">
+            Registrarme
+          </button>
+        </div>
+      </form>
+
+      <!-- Secondary Link -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          ¿Ya tienes cuenta?
+          <a
+            href="../Iniciar%20Sesion/login.html"
+            class="font-semibold text-primary hover:underline">
+            Inicia Sesión
+        </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS compartido con login -->
+  <script src="app.js"></script>
+</body>
+</html>

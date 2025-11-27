@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loopi - Estado Emocional</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4f7df3",
+            "background-light": "#F5F5F5",
+            "background-dark": "#101522",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="relative flex h-screen min-h-[600px] w-full flex-col mx-auto max-w-md">
+
+    <!-- Header -->
+    <header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+      <div class="flex w-12 items-center justify-start">
+        <button id="emotionConnectionButton" type="button" class="flex items-center justify-center">
+          <span id="emotionConnectionIcon" class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 text-3xl">
+            wifi_off
+          </span>
+        </button>
+      </div>
+      <h2 class="text-zinc-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+        Loopi
+      </h2>
+      <div class="flex w-20 items-center justify-end">
+        <p id="emotionConnectionText" class="text-zinc-500 dark:text-zinc-400 text-sm font-bold leading-normal tracking-[0.015em] shrink-0">
+          Sin conexión
+        </p>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex flex-1 flex-col justify-between p-4 pt-2">
+      <div class="flex flex-1 flex-col items-center justify-center">
+        <h1 class="text-zinc-900 dark:text-white tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-6 pt-2">
+          ¿Cómo te sientes ahora?
+        </h1>
+
+        <div class="grid grid-cols-2 gap-4 w-full">
+          <!-- Muy calmado -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #A3D8A3;"
+            data-emotion="muy-calmado">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_calm</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">Muy Calmado</p>
+          </button>
+
+          <!-- Tranquilo -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #BDE4F4;"
+            data-emotion="tranquilo">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_satisfied</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">Tranquilo</p>
+          </button>
+
+          <!-- Un poco inquieto -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #FFFACD;"
+            data-emotion="inquieto">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_neutral</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">Un poco inquieto</p>
+          </button>
+
+          <!-- Estresado -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #FFDAB9;"
+            data-emotion="estresado">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_stressed</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">Estresado</p>
+          </button>
+
+          <!-- Abrumado -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #F4C2C2;"
+            data-emotion="abrumado">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_dissatisfied</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">Abrumado</p>
+          </button>
+
+          <!-- En crisis -->
+          <button
+            class="emotion-card flex flex-col gap-3 items-center rounded-xl justify-center aspect-square shadow-sm p-3 transition transform"
+            style="background-color: #D8BFD8;"
+            data-emotion="crisis">
+            <span class="material-symbols-outlined text-zinc-800 text-6xl">sentiment_extremely_dissatisfied</span>
+            <p class="text-zinc-800 text-lg font-bold leading-tight text-center">En Crisis</p>
+          </button>
+        </div>
+
+        <!-- Mensaje de feedback -->
+        <p
+          id="emotionFeedback"
+          class="mt-6 text-center text-sm text-zinc-700 dark:text-zinc-300 px-4">
+          Toca una tarjeta para registrar cómo te sientes. Esto ayudará a tus cuidadores o profesionales a entenderte mejor.
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer / Navegación inferior -->
+    <footer class="sticky bottom-0">
+      <div class="flex gap-2 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-sm px-4 pb-3 pt-2">
+        <a data-nav="rutinas" class="flex flex-1 flex-col items-center justify-end gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+          <div class="flex h-8 w-8 items-center justify-center">
+            <span class="material-symbols-outlined !fill-0 !font-normal">list_alt</span>
+          </div>
+          <p class="text-xs font-medium leading-normal tracking-[0.015em]">Rutinas</p>
+        </a>
+        <a data-nav="comunicar" class="flex flex-1 flex-col items-center justify-end gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+          <div class="flex h-8 w-8 items-center justify-center">
+            <span class="material-symbols-outlined !fill-0 !font-normal">forum</span>
+          </div>
+          <p class="text-xs font-medium leading-normal tracking-[0.015em]">Comunicar</p>
+        </a>
+        <a data-nav="progreso" class="flex flex-1 flex-col items-center justify-end gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+          <div class="flex h-8 w-8 items-center justify-center">
+            <span class="material-symbols-outlined !fill-0 !font-normal">bar_chart</span>
+          </div>
+          <p class="text-xs font-medium leading-normal tracking-[0.015em]">Progreso</p>
+        </a>
+        <a data-nav="emociones" class="flex flex-1 flex-col items-center justify-end gap-1 text-primary dark:text-primary" href="#">
+          <div class="flex h-8 w-8 items-center justify-center bg-primary/20 rounded-full">
+            <span class="material-symbols-outlined text-primary">favorite</span>
+          </div>
+          <p class="text-primary text-xs font-bold leading-normal tracking-[0.015em]">Emociones</p>
+        </a>
+        <a data-nav="ajustes" class="flex flex-1 flex-col items-center justify-end gap-1 text-zinc-500 dark:text-zinc-400" href="#">
+          <div class="flex h-8 w-8 items-center justify-center">
+            <span class="material-symbols-outlined !fill-0 !font-normal">settings</span>
+          </div>
+          <p class="text-xs font-medium leading-normal tracking-[0.015em]">Ajustes</p>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS de esta pantalla -->
+  <script src="emociones.js"></script>
+</body>
+</html>

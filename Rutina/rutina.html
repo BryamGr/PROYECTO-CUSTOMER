@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loopi - Temporizador de Transición</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4f7df3",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101522",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="relative flex h-auto min-h-screen w-full flex-col text-slate-800 dark:text-white">
+
+    <!-- Header -->
+    <div class="flex items-center p-4 pb-2">
+      <div class="flex size-12 shrink-0 items-center">
+        <!-- podrías poner un botón de back aquí luego -->
+      </div>
+      <h2 id="screenTitle" class="flex-1 text-center text-lg font-bold leading-tight tracking-[-0.015em]">
+        Hora de prepararse
+      </h2>
+      <div class="flex w-12 items-center justify-end">
+        <button
+          id="connectionButton"
+          class="flex h-12 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-transparent p-0 text-slate-800 dark:text-white">
+          <span id="connectionIcon" class="material-symbols-outlined text-2xl">wifi_off</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <main class="flex flex-1 flex-col justify-between p-4 pb-28">
+      <div class="flex flex-col items-center justify-center gap-6 pt-8">
+        <!-- Timer circular -->
+        <div class="relative flex size-64 items-center justify-center">
+          <svg class="absolute inset-0 size-full" viewBox="0 0 36 36">
+            <path
+              class="text-slate-200 dark:text-slate-800"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="4">
+            </path>
+            <path
+              id="countdownPath"
+              class="text-primary transition-all duration-500 ease-linear"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831"
+              fill="none"
+              stroke="currentColor"
+              stroke-dasharray="100, 100"
+              stroke-linecap="round"
+              stroke-width="4">
+            </path>
+          </svg>
+          <div class="text-center">
+            <p
+              id="countdownLabel"
+              class="text-slate-500 dark:text-slate-400 text-base font-medium">
+              Quedan 2 minutos
+            </p>
+            <p
+              id="countdownTime"
+              class="text-5xl font-bold leading-tight tracking-[-0.015em]">
+              02:00
+            </p>
+          </div>
+        </div>
+
+        <!-- Mensaje sensorial -->
+        <div class="flex w-full max-w-sm items-center gap-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 p-3">
+          <span class="material-symbols-outlined text-3xl text-primary">headphones</span>
+          <p class="text-slate-600 dark:text-slate-300 text-sm font-normal leading-normal">
+            Hay mucho ruido. ¿Necesitas una pausa o tus auriculares?
+          </p>
+        </div>
+      </div>
+
+      <!-- Actividad siguiente -->
+      <div class="flex flex-col gap-4">
+        <h4 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase leading-normal tracking-[0.05em] text-center">
+          Actividad siguiente
+        </h4>
+
+        <div class="flex flex-col items-stretch justify-start rounded-xl bg-slate-200 dark:bg-slate-800 shadow-sm">
+          <div class="flex w-full items-center gap-4 p-4">
+            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-primary">
+              <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 2h-15A2.5 2.5 0 002 4.5v2A2.5 2.5 0 004.5 9h15A2.5 2.5 0 0022 6.5v-2A2.5 2.5 0 0019.5 2zM4.5 7A1.5 1.5 0 013 5.5v-1A1.5 1.5 0 014.5 3h15A1.5 1.5 0 0121 4.5v1A1.5 1.5 0 0119.5 7h-15z"></path>
+                <path d="M5 11h1v10H5zM8 11h1v10H8zM11 11h1v10h-1zM14 11h1v10h-1zM17 11h1v10h-1z"></path>
+              </svg>
+            </div>
+            <div class="flex grow flex-col items-stretch justify-center">
+              <p id="nextActivityTitle" class="text-lg font-bold leading-tight tracking-[-0.015em]">
+                Lavar los dientes
+              </p>
+              <p id="nextActivityText" class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">
+                Es hora de ir al baño a cepillarse.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex w-full flex-col items-stretch gap-3 pt-2">
+          <button
+            id="readyButton"
+            class="flex h-14 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-primary px-5 text-lg font-bold leading-normal tracking-[0.015em] text-white">
+            <span class="truncate">¡Estoy listo!</span>
+          </button>
+          <button
+            id="snoozeButton"
+            class="flex h-14 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-transparent px-5 text-lg font-bold leading-normal tracking-[0.015em] text-slate-800 dark:text-white">
+            <span class="truncate">Posponer 5 min</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Navegación inferior -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 flex h-20 items-center justify-around border-t border-slate-200 bg-background-light px-2 pb-4 pt-2 dark:border-slate-800 dark:bg-background-dark">
+      <a data-nav="rutinas" class="flex flex-col items-center justify-center gap-1 text-center text-primary" href="#">
+        <span class="material-symbols-outlined fill text-2xl">checklist</span>
+        <span class="text-xs font-medium">Rutinas</span>
+      </a>
+      <a data-nav="comunicar" class="flex flex-col items-center justify-center gap-1 text-center text-slate-500 dark:text-slate-400" href="#">
+        <span class="material-symbols-outlined text-2xl">chat_bubble</span>
+        <span class="text-xs font-medium">Comunicar</span>
+      </a>
+      <a data-nav="progreso" class="flex flex-col items-center justify-center gap-1 text-center text-slate-500 dark:text-slate-400" href="#">
+        <span class="material-symbols-outlined text-2xl">bar_chart</span>
+        <span class="text-xs font-medium">Progreso</span>
+      </a>
+      <a data-nav="emociones" class="flex flex-col items-center justify-center gap-1 text-center text-slate-500 dark:text-slate-400" href="#">
+        <span class="material-symbols-outlined text-2xl">sentiment_satisfied</span>
+        <span class="text-xs font-medium">Emociones</span>
+      </a>
+      <a data-nav="ajustes" class="flex flex-col items-center justify-center gap-1 text-center text-slate-500 dark:text-slate-400" href="#">
+        <span class="material-symbols-outlined text-2xl">settings</span>
+        <span class="text-xs font-medium">Ajustes</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- JS de esta pantalla -->
+  <script src="rutina.js"></script>
+</body>
+</html>
