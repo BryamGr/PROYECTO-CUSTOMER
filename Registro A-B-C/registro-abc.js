@@ -212,7 +212,7 @@
         comunicar: "/Comunicar/comunicar.html",
         progreso: "/Progreso/progreso.html", // pantalla principal de progreso
         emociones: "/Emociones/emociones.html",
-        ajustes: "ajustes.html",
+        ajustes: "/Ajustes/ajustes.html",
     };
 
     const navLinks = document.querySelectorAll("[data-nav]");

@@ -27,6 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* ========= Botón "Crear rutina" ========= */
+  const createRoutineBtn = document.getElementById("createRoutineBtn");
+
+  if (createRoutineBtn) {
+    createRoutineBtn.addEventListener("click", () => {
+      // Ruta de la página para crear una nueva rutina
+      // 👉 Cambia esta ruta si tu estructura de carpetas es distinta
+      const url = "/Crear Rutina/crear-rutina.html";
+      window.location.href = url;
+    });
+  }
+
   /* ========= Botones de Rutinas ========= */
   const routineButtons = document.querySelectorAll("[data-routine]");
 
@@ -36,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Abre una NUEVA pestaña con la página de rutina
       // Ajusta la ruta si la carpeta es distinta
-      const url = `/Rutina/rutina.html?rutina=${encodeURIComponent(id)}`;
+      const url = `/Crear Rutina/crear-rutina.html?rutina=${encodeURIComponent(id)}`;
       window.open(url, "_blank");
     });
   });
@@ -47,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     comunicar: "/Comunicar/comunicar.html",
     progreso: "/Progreso/progreso.html",
     emociones: "/Emociones/emociones.html",
-    ajustes: "ajustes.html",
+    ajustes: "/Ajustes/ajustes.html",
   };
 
   const navLinks = document.querySelectorAll("[data-nav]");

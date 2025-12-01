@@ -1,10 +1,10 @@
     // ========= Navegación inferior =========
     const routes = {
-    rutinas: "home.html",        // pantalla de rutinas / temporizador
-    comunicar: "comunicar.html", // tablero de comunicación
-    progreso: "progreso.html",   // puntos / ABC / etc.
-    emociones: "emociones.html", // pantalla principal de emociones
-    ajustes: "ajustes.html",     // configuración
+    rutinas: "/Home/home.html",        // pantalla de rutinas / temporizador
+    comunicar: "/Comunicar/comunicar.html", // tablero de comunicación
+    progreso: "/Progreso/progreso.html",   // puntos / ABC / etc.
+    emociones: "/Emociones/emociones.html", // pantalla principal de emociones
+    ajustes: "/Ajustes/ajustes.html",     // configuración
     };
 
     const navLinks = document.querySelectorAll("[data-nav]");

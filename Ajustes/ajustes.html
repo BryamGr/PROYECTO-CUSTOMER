@@ -1,0 +1,282 @@
+    <!DOCTYPE html>
+    <html class="dark" lang="es">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accesibilidad Avanzada - Loopi</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+            colors: {
+                "primary": "#4f7df3",
+                "background-light": "#f6f6f8",
+                "background-dark": "#101522",
+            },
+            fontFamily: {
+                "display": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+            },
+            },
+        },
+        }
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        body {
+        min-height: max(884px, 100dvh);
+        }
+    </style>
+    </head>
+
+    <body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto">
+
+        <!-- Offline Indicator -->
+        <div
+        id="offlineBanner"
+        class="bg-yellow-500/20 dark:bg-yellow-500/10 text-yellow-800 dark:text-yellow-300 py-1 px-4 flex items-center justify-center gap-2 text-sm cursor-pointer">
+        <span id="offlineIcon" class="material-symbols-outlined text-base">wifi_off</span>
+        <p id="offlineText">Sin conexión</p>
+        </div>
+
+        <!-- Top App Bar -->
+        <header
+        class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+        <button id="backButton"
+            class="text-slate-800 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1
+            class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+            Accesibilidad Avanzada
+        </h1>
+        <div class="size-10 shrink-0"></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow pb-32 px-4 space-y-6">
+
+        <!-- Text-to-Speech Speed Section -->
+        <section>
+            <h2
+            class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">
+            Velocidad de Lectura
+            </h2>
+            <div class="bg-slate-100 dark:bg-slate-800/50 rounded-lg">
+            <div class="relative flex w-full flex-col items-start justify-between gap-3 p-4">
+                <div class="flex w-full items-center justify-between">
+                <p class="text-slate-800 dark:text-slate-200 text-base font-medium leading-normal">
+                    Ajuste de velocidad de texto a voz
+                </p>
+                <p id="ttsSpeedLabel" class="text-primary text-sm font-semibold leading-normal">
+                    Normal
+                </p>
+                </div>
+                <div class="flex h-4 w-full items-center gap-4 pt-2">
+                <span class="text-xs text-slate-500 dark:text-slate-400">Lento</span>
+                <div id="ttsSpeedTrack"
+                    class="relative flex-1 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 cursor-pointer">
+                    <div id="ttsSpeedFill"
+                    class="absolute left-0 top-0 h-full rounded-full bg-primary"
+                    style="width: 50%;"></div>
+                    <div id="ttsSpeedThumb"
+                    class="absolute top-1/2 -translate-y-1/2 size-5 rounded-full bg-white dark:bg-slate-200 border-2 border-primary shadow-md"
+                    style="left: 50%;"></div>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Rápido</span>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Haptic Feedback Section -->
+        <section>
+            <h2
+            class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">
+            Respuesta Táctil
+            </h2>
+            <div class="bg-slate-100 dark:bg-slate-800/50 rounded-lg divide-y divide-slate-200 dark:divide-slate-700">
+            <div class="flex items-center gap-4 p-4 min-h-14 justify-between">
+                <div class="flex items-center gap-4">
+                <div
+                    class="text-slate-800 dark:text-white flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 shrink-0 size-10">
+                    <span class="material-symbols-outlined">vibration</span>
+                </div>
+                <p
+                    class="text-slate-800 dark:text-slate-200 text-base font-normal leading-normal flex-1 truncate">
+                    Tipo de vibración
+                </p>
+                </div>
+                <div class="shrink-0">
+                <button id="vibrationTypeBtn"
+                    class="text-primary text-base font-medium leading-normal">
+                    Corta
+                </button>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 min-h-14 justify-between">
+                <div class="flex items-center gap-4">
+                <div
+                    class="text-slate-800 dark:text-white flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 shrink-0 size-10">
+                    <span class="material-symbols-outlined">tune</span>
+                </div>
+                <p
+                    class="text-slate-800 dark:text-slate-200 text-base font-normal leading-normal flex-1 truncate">
+                    Intensidad
+                </p>
+                </div>
+                <div class="shrink-0">
+                <button id="vibrationIntensityBtn"
+                    class="text-primary text-base font-medium leading-normal">
+                    Fuerte
+                </button>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Color Filters Section -->
+        <section>
+            <div class="flex items-center justify-between pb-2 pt-4">
+            <h2
+                class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                Filtros de Color
+            </h2>
+            <label
+                class="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-slate-300 dark:bg-slate-700 transition-colors duration-300 ease-in-out has-[:checked]:bg-primary">
+                <input checked
+                class="peer sr-only"
+                id="color-filter-toggle"
+                type="checkbox" />
+                <span
+                class="absolute left-1 size-4 rounded-full bg-white transition-transform duration-300 ease-in-out peer-checked:translate-x-full"></span>
+            </label>
+            </div>
+
+            <div id="colorFiltersGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <!-- Normal -->
+            <div class="flex flex-col items-center gap-2">
+                <button
+                class="color-filter-option aspect-square w-full rounded-lg bg-gradient-to-br from-indigo-300 to-purple-300 ring-2 ring-primary ring-offset-2 ring-offset-background-light dark:ring-offset-background-dark transition-all"
+                data-filter="normal">
+                </button>
+                <p
+                class="text-slate-800 dark:text-slate-200 text-sm font-medium"
+                data-filter-label="normal">
+                Normal
+                </p>
+            </div>
+
+            <!-- Monocromático -->
+            <div class="flex flex-col items-center gap-2">
+                <button
+                class="color-filter-option aspect-square w-full rounded-lg bg-gradient-to-br from-slate-400 to-slate-600 grayscale hover:ring-2 hover:ring-primary/50 transition-all"
+                data-filter="mono">
+                </button>
+                <p
+                class="text-slate-500 dark:text-slate-400 text-sm"
+                data-filter-label="mono">
+                Monocromático
+                </p>
+            </div>
+
+            <!-- Tinte cálido -->
+            <div class="flex flex-col items-center gap-2">
+                <button
+                class="color-filter-option aspect-square w-full rounded-lg bg-gradient-to-br from-yellow-300 to-red-400 [filter:sepia(0.5)_hue-rotate(-20deg)] hover:ring-2 hover:ring-primary/50 transition-all"
+                data-filter="warm">
+                </button>
+                <p
+                class="text-slate-500 dark:text-slate-400 text-sm"
+                data-filter-label="warm">
+                Tinte Cálido
+                </p>
+            </div>
+
+            <!-- Rojo-Verde -->
+            <div class="flex flex-col items-center gap-2">
+                <button
+                class="color-filter-option aspect-square w-full rounded-lg bg-gradient-to-br from-red-500 to-red-700 [filter:hue-rotate(200deg)] hover:ring-2 hover:ring-primary/50 transition-all"
+                data-filter="redgreen">
+                </button>
+                <p
+                class="text-slate-500 dark:text-slate-400 text-sm"
+                data-filter-label="redgreen">
+                Rojo-Verde
+                </p>
+            </div>
+            </div>
+        </section>
+
+        <!-- Reset Button -->
+        <section class="pt-6">
+            <button id="resetAccessibilityBtn"
+            class="w-full h-12 px-6 bg-slate-200 dark:bg-slate-800 text-primary font-semibold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+            Restablecer a valores predeterminados
+            </button>
+        </section>
+        </main>
+
+        <!-- Bottom Navigation Bar -->
+        <nav
+        class="fixed bottom-0 left-0 right-0 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800">
+        <div class="mx-auto flex max-w-md items-center justify-around h-20 px-4">
+            <a data-nav="rutinas"
+            class="flex flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            href="#">
+            <span class="material-symbols-outlined">view_list</span>
+            <span class="text-xs font-medium">Rutinas</span>
+            </a>
+            <a data-nav="comunicar"
+            class="flex flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            href="#">
+            <span class="material-symbols-outlined">chat_bubble</span>
+            <span class="text-xs font-medium">Comunicar</span>
+            </a>
+            <a data-nav="progreso"
+            class="flex flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            href="#">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <span class="text-xs font-medium">Progreso</span>
+            </a>
+            <a data-nav="emociones"
+            class="flex flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            href="#">
+            <span class="material-symbols-outlined">sentiment_satisfied</span>
+            <span class="text-xs font-medium">Emociones</span>
+            </a>
+            <a data-nav="ajustes"
+            class="flex flex-col items-center justify-center gap-1 text-primary dark:text-primary transition-colors"
+            href="#">
+            <span class="material-symbols-outlined filled">settings</span>
+            <span class="text-xs font-bold">Ajustes</span>
+            </a>
+        </div>
+        </nav>
+    </div>
+
+    <!-- JS de esta pantalla -->
+    <script src="ajustes.js"></script>
+    </body>
+    </html>

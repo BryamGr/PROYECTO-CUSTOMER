@@ -121,7 +121,7 @@
         comunicar: "/Comunicar/comunicar.html", // esta misma
         progreso: "/Progreso/progreso.html",
         emociones: "/Emociones/emociones.html",
-        ajustes: "ajustes.html",
+        ajustes: "/Ajustes/ajustes.html",
     };
 
     const navLinks = document.querySelectorAll("[data-nav]");

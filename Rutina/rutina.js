@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     comunicar: "/Comunicar/comunicar.html",
     progreso: "/Progreso/progreso.html",
     emociones: "/Emociones/emociones.html",
-    ajustes: "ajustes.html",
+    ajustes: "/Ajustes/ajustes.html",
   };
 
   const navLinks = document.querySelectorAll("[data-nav]");

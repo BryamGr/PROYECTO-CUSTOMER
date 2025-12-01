@@ -90,7 +90,9 @@
 
     if (historyButton) {
         historyButton.addEventListener("click", () => {
-        showMessage("Aquí se mostrará el historial de estrellas (pantalla en construcción).");
+        // 👉 Redirige a la página de historial
+        // Crea este archivo o cambia la ruta a la que tú uses
+        window.location.href = "/Historial Emocional/historial_emocional.html";
         });
     }
 
@@ -106,7 +108,7 @@
         comunicar: "/Comunicar/comunicar.html",
         progreso: "/Progreso/progreso.html",   // esta pantalla
         emociones: "/Emociones/emociones.html",
-        ajustes: "ajustes.html",
+        ajustes: "/Ajustes/ajustes.html",
     };
 
     const navLinks = document.querySelectorAll("[data-nav]");

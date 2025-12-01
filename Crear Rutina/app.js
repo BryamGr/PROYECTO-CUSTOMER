@@ -4,7 +4,7 @@
     comunicar: "/Comunicar/comunicar.html",
     progreso: "/Progreso/progreso.html",
     emociones: "/Emociones/emociones.html",
-    ajustes: "ajustes.html",
+    ajustes: "/Ajustes/ajustes.html",
     };
 
     // Navegación inferior
