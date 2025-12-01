@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Abre una NUEVA pestaña con la página de rutina
       // Ajusta la ruta si la carpeta es distinta
-      const url = `/Crear Rutina/crear-rutina.html?rutina=${encodeURIComponent(id)}`;
+      const url = `/Rutina/rutina.html?rutina=${encodeURIComponent(id)}`;
       window.open(url, "_blank");
     });
   });
